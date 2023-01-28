@@ -1,5 +1,6 @@
 @import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,300italic,400italic");
 @import url("fontawesome-all.min.css");
+@import url("simple-lightbox.min.css");
 
 /*
 	Astral by HTML5 UP
@@ -1553,6 +1554,8 @@ input, select, textarea {
 		.image img {
 			display: block;
 			width: 100%;
+			height: 10rem;
+			object-fit: cover;
 		}
 
 		.image.fit {
@@ -2037,6 +2040,8 @@ input, select, textarea {
 						-webkit-object-position: center;
 						-ms-object-position: center;
 						object-position: center;
+						-webkit-transform: scaleX(-1);
+						transform: scaleX(-1);
 					}
 
 					#main > .panel.intro .pic .arrow {

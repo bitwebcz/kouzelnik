@@ -213,12 +213,9 @@
 		const RSS_URL = `https://artin-kouzelnik.rajce.idnes.cz/Artin-Kouzelnik_Pavilonek_Plzen_2018/?rss=media`;
 		const PROXY_URL = `https://cors-anywhere.herokuapp.com/${RSS_URL}`;
 
-		$.ajax(RSS_URL, {
+		$.ajax(PROXY_URL, {
 			accepts: {
 				xml: "application/rss+xml"
-			},
-			headers: {
-				'Content-Type': 'application/x-www-form-urlencoded'
 			},
 			dataType: "xml",
 			success: function(data) {
@@ -226,23 +223,18 @@
 				.find("item")
 				.each(function() {
 					const el = $(this);
-
 					const template = `
-					<article>
-						<img src="${el.find("link").text()}" alt="">
-						<h2>
-						<a href="${el
-							.find("link")
-							.text()}" target="_blank" rel="noopener">
-							${el.find("title").text()}
-						</a>
-						</h2>
-					</article>
+					<div class="col-4 col-6-medium col-12-small">
+						<a href="${el.find("media\\:content").attr("url")}" class="image fit"><img src="${el.find("media\\:thumbnail").attr("url")}" alt=""></a>
+					</div> 
 					`;
-
-					document.body.insertAdjacentHTML("beforeend", template);
+					// document.body.insertAdjacentHTML("beforeend", template);
+					$(".rajce").append(template);
 				});
+				// lightbox
+				new SimpleLightbox('.rajce a', { showCounter: false });
 			}
 		});
 
+		
 })(jQuery);
