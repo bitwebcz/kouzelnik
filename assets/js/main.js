@@ -210,31 +210,30 @@
 		}
 
 		// rss feed gallery 
-		const RSS_URL = `https://artin-kouzelnik.rajce.idnes.cz/Artin-Kouzelnik_Pavilonek_Plzen_2018/?rss=media`;
-		const PROXY_URL = `https://cors-anywhere.herokuapp.com/${RSS_URL}`;
+		// const RSS_URL = `https://artin-kouzelnik.rajce.idnes.cz/Artin-Kouzelnik_Pavilonek_Plzen_2018/?rss=media`;
+		// const PROXY_URL = `https://cors-anywhere.herokuapp.com/${RSS_URL}`;
 
-		$.ajax(PROXY_URL, {
-			accepts: {
-				xml: "application/rss+xml"
-			},
-			dataType: "xml",
-			success: function(data) {
-				$(data)
-				.find("item")
-				.each(function() {
-					const el = $(this);
-					const template = `
-					<div class="col-4 col-6-medium col-12-small">
-						<a href="${el.find("media\\:content").attr("url")}" class="image fit"><img src="${el.find("media\\:thumbnail").attr("url")}" alt=""></a>
-					</div> 
-					`;
-					// document.body.insertAdjacentHTML("beforeend", template);
-					$(".rajce").append(template);
-				});
-				// lightbox
-				new SimpleLightbox('.rajce a', { showCounter: false });
-			}
-		});
-
-		
+		// $.ajax(RSS_URL, {
+		// 	accepts: {
+		// 		xml: "application/rss+xml"
+		// 	},
+		// 	dataType: "xml",
+		// 	success: function(data) {
+		// 		$(data)
+		// 		.find("item")
+		// 		.each(function() {
+		// 			const el = $(this);
+		// 			const template = `
+		// 			<div class="col-4 col-6-medium col-12-small">
+		// 				<a href="${el.find("media\\:content").attr("url")}" class="image fit"><img src="${el.find("media\\:thumbnail").attr("url")}" alt=""></a>
+		// 			</div> 
+		// 			`;
+		// 			// document.body.insertAdjacentHTML("beforeend", template);
+		// 			$(".rajce").append(template);
+		// 		});
+		// 		// lightbox
+		// 		new SimpleLightbox('.rajce a', { showCounter: false });
+		// 	}
+		// });
+		new SimpleLightbox('.rajce a', { showCounter: false });
 })(jQuery);
